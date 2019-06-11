@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 
 @RestController
@@ -35,7 +38,14 @@ public class BookRestController {
             HttpServletRequest request){
         Book book = bookRepository.getOne(id);
 
+
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(book);
+    }
+
+    @GetMapping()
+    public Collection<Book> getAll(HttpServletRequest request){
+        List<Book> listBook = bookRepository.findAll();
+        return listBook;
     }
 
 }
